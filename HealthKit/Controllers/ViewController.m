@@ -1,6 +1,9 @@
 //
-//  ViewController.m
-//  HealthKit
+//  GitHub:https://github.com/zhuozhuo
+
+//  博客：http://www.jianshu.com/users/39fb9b0b93d3/latest_articles
+
+//  欢迎投稿分享：http://www.jianshu.com/collection/4cd59f940b02
 //
 //  Created by aimoke on 16/9/20.
 //  Copyright © 2016年 zhuo. All rights reserved.
@@ -80,6 +83,7 @@
                     NSLog(@"请求访问健康数据成功!");
                 }else{
                     NSLog(@"请求健康数据失败Error:%@",[error localizedDescription]);
+                    [self showAlertViewWithDetail:[error localizedDescription]];
                 }
             }];
             
@@ -89,8 +93,10 @@
             [manager saveStepCount:1000 startTime:[NSDate date] endTime:[NSDate date] withCompletion:^(BOOL success,NSError *error){
                 if (success) {
                     NSLog(@"写入计步数据成功!");
+                    [self showAlertViewWithDetail:@"写入计步数据成功!"];
                 }else{
                     NSLog(@"写入计步数据错误:%@",error.localizedDescription);
+                    [self showAlertViewWithDetail:[error localizedDescription]];
                 }
             }];
         }
@@ -99,8 +105,10 @@
             [manager saveWalkDistance:1000 startTime:[NSDate date] endTime:[NSDate date] withCompletion:^(BOOL success, NSError *error){
                 if (success) {
                     NSLog(@"写入步数距离数据成功!");
+                    [self showAlertViewWithDetail:@"写入步数距离数据成功!"];
                 }else{
                     NSLog(@"写入步数距离错误:%@",error.localizedDescription);
+                    [self showAlertViewWithDetail:[error localizedDescription]];
                 }
             }];
         }
@@ -109,8 +117,11 @@
             [manager saveActiveEnergyBurnCalories:1000 startTime:[NSDate date] endTime:[NSDate date] withCompletion:^(BOOL success,NSError *error){
                 if (success) {
                     NSLog(@"写入活动卡路里数据成功!");
+                    [self showAlertViewWithDetail:@"写入活动卡路里数据成功!"];
+
                 }else{
                     NSLog(@"写入活动卡路里数据错误:%@",error.localizedDescription);
+                    [self showAlertViewWithDetail:[error localizedDescription]];
                 }
             }];
         }
@@ -119,8 +130,11 @@
             [manager saveHeightIntoHealthStore:170 withCompletion:^(BOOL success, NSError *error){
                 if (success) {
                     NSLog(@"写入身高数据成功!");
+                    [self showAlertViewWithDetail:@"写入身高数据成功!"];
+
                 }else{
                     NSLog(@"写入身高数据错误:%@",error.localizedDescription);
+                    [self showAlertViewWithDetail:[error localizedDescription]];
                 }
                 
             }];
@@ -132,8 +146,10 @@
             [manager saveSleepWithstartTime:startTime endTime:endTime withCompletion:^(BOOL success, NSError *error){
                 if (success) {
                     NSLog(@"添加睡眠数据成功StartTime:%@",startTime);
+                    [self showAlertViewWithDetail:@"添加睡眠数据成功!"];
                 }else{
                     NSLog(@"添加睡眠数据失败StartTime:%@",endTime);
+                    [self showAlertViewWithDetail:[error localizedDescription]];
                 }
 
             }];
@@ -144,8 +160,10 @@
             [manager saveWeightIntoHealthStore:60 withCompletion:^(BOOL success, NSError *error){
                 if (success) {
                     NSLog(@"写入体重数据成功!");
+                    [self showAlertViewWithDetail:@"写入体重数据成功!"];
                 }else{
                     NSLog(@"写入体重数据错误:%@",error.localizedDescription);
+                    [self showAlertViewWithDetail:[error localizedDescription]];
                 }
                 
             }];
@@ -155,8 +173,10 @@
             [manager saveHeartRate:100 withCompletion:^(BOOL success, NSError *error){
                 if (success) {
                     NSLog(@"写入心率数据成功!");
+                    [self showAlertViewWithDetail:@"写入心率数据成功!"];
                 }else{
                     NSLog(@"写入心率数据错误:%@",error.localizedDescription);
+                    [self showAlertViewWithDetail:[error localizedDescription]];
                 }
             }];
         }
@@ -165,8 +185,10 @@
             [manager readUsersAgeWithFinish:^(NSInteger age, NSError *error){
                 if (error) {
                     NSLog(@"读取年龄出错Error:%@",[error localizedDescription]);
+                    [self showAlertViewWithDetail:[error localizedDescription]];
                 }else{
-                    NSLog(@"User Age:%ld",age); 
+                    NSLog(@"User Age:%ld",age);
+                    [self showAlertViewWithDetail:[NSString stringWithFormat:@"读取年龄成功:%ld",age]];
                 }
             }];
         }
@@ -193,6 +215,16 @@
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
+}
+
+#pragma mark - Private Methods
+-(void)showAlertViewWithDetail:(NSString *)detail
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Reminder" message:detail delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    });
+   
 }
 
 @end

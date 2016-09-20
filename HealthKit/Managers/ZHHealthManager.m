@@ -1,6 +1,10 @@
 //
-//  ZHHealthManager.m
-//  TestHealthKit
+//  GitHub:https://github.com/zhuozhuo
+
+//  博客：http://www.jianshu.com/users/39fb9b0b93d3/latest_articles
+
+//  欢迎投稿分享：http://www.jianshu.com/collection/4cd59f940b02
+
 //
 //  Created by aimoke on 16/5/25.
 //  Copyright © 2016年 zhuo. All rights reserved.
@@ -12,6 +16,8 @@
 #import "NSDate+ZHDate.h"
 
 @implementation ZHHealthManager
+
+#pragma mark - Initial Methods
 +(ZHHealthManager *)shareZHHealthManager
 {
     static ZHHealthManager *healthManager = nil;
@@ -32,6 +38,7 @@
     
     return self;
 }
+
 
 
 #pragma mark - Piblic Methods
@@ -58,7 +65,6 @@
 
 
 
-
 #pragma mark - Health Kit TypesToWrite
 -(NSSet *)dataTypesToWrite
 {
@@ -75,11 +81,15 @@
     return [NSSet setWithObjects:stepCountQuantityType, walkDistanceQuantityType, activeEnergyBurnQuantityType,sleepCategoryType,heartQuantityType,heightType,weightType, nil];
 }
 
+
+
+#pragma mark - Health Kit TypesToRead
 - (NSSet *)dataTypesToRead {
     HKCharacteristicType *ageTypte = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth];
     return [NSSet setWithObjects:ageTypte, nil];
     return nil;
 }
+
 
 
 #pragma mark - Reading HealthKit Data
@@ -95,18 +105,18 @@
     }
     NSError *error;
     NSDate *dateOfBirth = [self.healthStore dateOfBirthWithError:&error];
-    NSInteger age = 0;
-    if (dateOfBirth) {
+    NSInteger age = -1;//年龄没有获取到返回－1
+    if (dateOfBirth) {//读取到生日转换成年龄
         NSDate *now = [NSDate date];
         NSDateComponents *ageComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:dateOfBirth toDate:now options:NSCalendarWrapComponents];
         NSUInteger usersAge = [ageComponents year];
         age = usersAge;
-        error = nil;
     }
     if (finish) {
         finish(age,error);
     }
 }
+
 
 
 #pragma mark - Writing HealthKit Data
@@ -163,6 +173,7 @@
     }];
 
 }
+
 
 -(void)saveStepCount:(NSInteger)steps startTime:(NSDate *)startDate endTime:(NSDate *)endDate withCompletion:(ZHHealthKitFinishBlock)finish
 {
