@@ -25,14 +25,14 @@
 ##使用HealthKit特别注意
 
 1. 你的应用不应该将HealthKit收集的数据用于广告或类似的服务。注意，在使用HealthKit框架应用中可以插播广告，但是你不能使用HealthKit中的数据来服务广告。
-
 2. 在没有用户的明确允许下，你不能向第三方展示任何HealthKit收集的数据。即使用户允许，你也只能向提供健康或健身服务的第三方展示这些数据。
-
 3. 你不能将HealthKit收集的数据出售给广告平台、数据代理人或者信息经销商。
-
 4. 如果用户允许，你可以将HealthKit数据共享给第三方用于医学研究。**注意是用户允许**
-
 5. 你必须明确说明，你和你的应用会怎样使用用户的HealthKit数据。
+
+
+
+
 
 ## 应用中使用了HealthKit 上 App Store 特别注意
 
@@ -58,13 +58,13 @@
    * [HKCorrelation](https://developer.apple.com/reference/healthkit/hkcorrelation)
    * [HKWorkout](https://developer.apple.com/reference/healthkit/hkworkout)
 
-*  [HKObject](https://developer.apple.com/reference/healthkit/hkobject#//apple_ref/occ/cl/HKObject) 主要分为两类：特征和样本。特征对象代表一些基本不变的数据。例如：用户的生日、血型和生理性别,肤色。你的应用不能写入特征数据。用户必须通过健康应用来输入或者修改这些数据。
+* [HKObject](https://developer.apple.com/reference/healthkit/hkobject#//apple_ref/occ/cl/HKObject) 主要分为两类：特征和样本。特征对象代表一些基本不变的数据。例如：用户的生日、血型和生理性别,肤色。你的应用不能写入特征数据。用户必须通过健康应用来输入或者修改这些数据。
    * 样本对象是某个特定时间断的数据。所有的样本对象都是[HKSample](https://developer.apple.com/library/prerelease/ios/documentation/HealthKit/Reference/HKSample_Class/index.html#//apple_ref/occ/cl/HKSample)的子类。它们都有下列属性：
      * `sampleType`: 样本类型。例如：一个睡眠分析样本、一个身高样本或者一个计步样本。
      * `startDate` : 样本的开始时间。
      * `endDate` : 样本的结束时间。
 
-*  [HKObject](https://developer.apple.com/reference/healthkit/hkobject#//apple_ref/occ/cl/HKObject) 所有对象都是不可变的(除非修改了对象来源),创建对象时需设置对象的相关属性。所有对象都有相同的属性。如下所示：
+* [HKObject](https://developer.apple.com/reference/healthkit/hkobject#//apple_ref/occ/cl/HKObject) 所有对象都是不可变的(除非修改了对象来源),创建对象时需设置对象的相关属性。所有对象都有相同的属性。如下所示：
    * 唯一的标识符`UUID`
    * 数据来源`source` 9.0版本后用`sourceRevision`
    * `device`生成这个对象数据的设备。
@@ -94,7 +94,7 @@
    > ```
        ​```
 
-*  [HKObjectType](https://developer.apple.com/reference/healthkit/hkobjecttype#//apple_ref/occ/cl/HKObjectType)是用来描述[HKObject](https://developer.apple.com/reference/healthkit/hkobject#//apple_ref/occ/cl/HKObject)的类型。我们也不能直接使用，只能使用其子类来对数据类型进行区分。其子类有:
+* [HKObjectType](https://developer.apple.com/reference/healthkit/hkobjecttype#//apple_ref/occ/cl/HKObjectType)是用来描述[HKObject](https://developer.apple.com/reference/healthkit/hkobject#//apple_ref/occ/cl/HKObject)的类型。我们也不能直接使用，只能使用其子类来对数据类型进行区分。其子类有:
    * [HKQuantityType ](https://developer.apple.com/reference/healthkit/hkquantitytype)
    * [HKCategoryType](https://developer.apple.com/reference/healthkit/hkcategorytype)
    * [HKCharacteristicType](https://developer.apple.com/reference/healthkit/hkcharacteristictype)
@@ -102,7 +102,7 @@
    * [HKCorrelationType](https://developer.apple.com/reference/healthkit/hkcorrelationtype)
    * [HKDocumentType](https://developer.apple.com/reference/healthkit/hkdocumenttype)
    * [HKWorkoutType](https://developer.apple.com/reference/healthkit/hkworkouttype)
-*  初始化类型子类的方法有:
+* 初始化类型子类的方法有:
 
 
 ```objective-c
