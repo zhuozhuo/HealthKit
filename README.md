@@ -3,6 +3,7 @@
 
 ![recordTime2.gif](http://upload-images.jianshu.io/upload_images/2926059-b00a048443397e0c.gif?imageMogr2/auto-orient/strip)
 
+
 ##前言
 >随着人们对健康的重视,移动端两大巨头Apple和Google都推出了各自的健康库 Apple Health , Google Fit ,它们集成大部分健康中所用到的数据类型,各个应用根据自己所擅长的领域写入相关健康数据,或共享HealthKit中其他健康数据,以达各尽所长，数据共享！
 
